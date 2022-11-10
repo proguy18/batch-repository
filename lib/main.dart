@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_voximplant/flutter_voximplant.dart';
+import 'package:telecomm_mobile/screens/home_page.dart';
 import 'package:telecomm_mobile/widgets/login.dart';
 
 VIClient client = Voximplant().getClient();
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginButton(),
+      // home: const LoginButton(),
+      home: HomePage(),
       // home: AdminBookings(),
     );
   }
