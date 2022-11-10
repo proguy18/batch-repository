@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:telecomm_mobile/widgets/custom_page_route.dart';
 
-class HomeButton extends StatelessWidget {
+class NavButton extends StatelessWidget {
   final String page;
   final Widget destination;
 
-  HomeButton({required this.page, required this.destination});
+  NavButton({required this.page, required this.destination});
 
   @override
   Widget build(BuildContext context) {
