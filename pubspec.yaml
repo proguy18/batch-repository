@@ -38,6 +38,7 @@ dependencies:
   flutter_voximplant: ^3.5.1
   shared_preferences: ^2.0.15
   permission_handler: ^10.2.0
+  cloud_firestore: ^4.0.5
 
 dev_dependencies:
   flutter_test:

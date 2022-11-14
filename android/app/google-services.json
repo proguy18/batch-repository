@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "111468972966",
+    "project_id": "inferno-telecomm",
+    "storage_bucket": "inferno-telecomm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111468972966:android:d701a3023db3110a3e5d67",
+        "android_client_info": {
+          "package_name": "com.example.telecomm_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111468972966-ce3ila61ui9thk0mda9n0rme5o4nfrld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUuLKCgAi97ou2XDf-Pjd5JvwY3xRt0rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111468972966-ce3ila61ui9thk0mda9n0rme5o4nfrld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
