@@ -62,7 +62,6 @@ class HomePage extends StatelessWidget {
           final widget = pagesWidget[index];
 
           return NavButton(page: string, destination: widget);
-          // return buildNumber(item);
         },
       );
 
