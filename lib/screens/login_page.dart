@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:telecomm_mobile/screens/admin_view.dart';
-// import 'package:telecomm_mobile/screens/forgot_password_screen.dart';
+import 'package:telecomm_mobile/screens/forgot_password_page.dart';
 // import 'package:telecomm_mobile/screens/registration_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -242,9 +242,8 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          // ForgotPassword()));
-                                          HomePage()));
+                                      builder: (context) => ForgotPassword()));
+                              // HomePage()));
                             },
                             child: Text(
                               "Forgot password",
