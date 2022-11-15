@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:telecomm_mobile/screens/home_page.dart';
+import 'package:telecomm_mobile/screens/registration_page.dart';
 // import 'package:telecomm_mobile/screens/navbar.dart';
 // import 'package:video_player/video_player.dart';
 
@@ -213,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                             children: <Widget>[
                               Text(
                                 "Don't have an account? ",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.black),
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -221,13 +222,13 @@ class _LoginPageState extends State<LoginPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              // RegistrationScreen()));
-                                              HomePage()));
+                                              RegistrationPage()));
+                                  // HomePage()));
                                 },
                                 child: Text(
                                   "Sign up",
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15),
                                 ),
@@ -248,7 +249,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text(
                               "Forgot password",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15),
                             ),
