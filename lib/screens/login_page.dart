@@ -274,24 +274,29 @@ class _LoginPageState extends State<LoginPage> {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((userCreds) async => {
-                  // Redirect to admin app
-                  if (await isAdmin(userCreds.user?.uid))
-                    {
-                      Fluttertoast.showToast(msg: "Admin login successful"),
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>
-                              // AdminScreen())),
-                              HomePage())),
-                    }
-                  // Redirect to user app
-                  else
-                    {
-                      Fluttertoast.showToast(msg: "User login successful"),
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>
-                              // NavBarHomeScreen())),
-                              HomePage())),
-                    }
+                  // // Redirect to admin app
+                  // if (await isAdmin(userCreds.user?.uid))
+                  //   {
+                  //     Fluttertoast.showToast(msg: "Admin login successful"),
+                  //     Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  //         builder: (context) =>
+                  //             // AdminScreen())),
+                  //             HomePage())),
+                  //   }
+                  // // Redirect to user app
+                  // else
+                  //   {
+                  //     Fluttertoast.showToast(msg: "User login successful"),
+                  //     Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  //         builder: (context) =>
+                  //             // NavBarHomeScreen())),
+                  //             HomePage())),
+                  //   }
+                  Fluttertoast.showToast(msg: "Login successful"),
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) =>
+                          // AdminScreen())),
+                          HomePage())),
                 });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
