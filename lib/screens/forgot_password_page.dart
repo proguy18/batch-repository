@@ -53,6 +53,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           color: Colors.white,
         ),
         decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.black.withOpacity(0.2),
           prefixIcon: Icon(
             Icons.mail,
             color: Colors.white,
@@ -68,7 +70,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         ));
 
     //reset button
-    final signUpButton = Material(
+    final forgetPasswordButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
       color: Colors.black,
@@ -131,7 +133,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     SizedBox(height: 20),
                     emailField,
                     SizedBox(height: 20),
-                    signUpButton,
+                    forgetPasswordButton,
                     SizedBox(height: 15),
                   ],
                 ),
