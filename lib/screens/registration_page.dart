@@ -18,17 +18,6 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  // String? selectedLocation;
-  // //list cities
-  // final List<String> locations = [
-  //   'Jakarta Utara',
-  //   'Jakarta Selatan',
-  //   'Jakarta timur',
-  //   'Jakarta barat',
-  //   'Tangerang',
-  //   'Bekasi',
-  //   'Depok'
-  // ];
 
   //show passwordd
   bool _showPassword = false;
@@ -37,11 +26,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       _showPassword = !_showPassword;
     });
   }
-
-  //terms conditions url
-  // final Uri terms = Uri.parse('https://www.skeetssuherman.com/about-4');
-  // final Uri conditions =
-  //     Uri.parse('https://www.skeetssuherman.com/copy-of-about');
 
   final _auth = FirebaseAuth.instance;
 
@@ -100,42 +84,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
           ),
         ));
 
-    // //birthday name field
-    // final birthDayField = TextFormField(
-    //     autofocus: false,
-    //     controller: birthDayEditingController,
-    //     keyboardType: TextInputType.name,
-    //     validator: (value) {
-    //       RegExp regex = new RegExp(r'^.{8,}$');
-    //       if (value!.isEmpty) {
-    //         return ("Birthday cannot be empty");
-    //       }
-    //       if (!regex.hasMatch(value)) {
-    //         return ("Enter valid name (Min. 8 characters)");
-    //       }
-    //       return null;
-    //     },
-    //     onSaved: (value) {
-    //       birthDayEditingController.text = value!;
-    //     },
-    //     textInputAction: TextInputAction.next,
-    //     style: TextStyle(
-    //       color: Colors.white,
-    //     ),
-    //     decoration: InputDecoration(
-    //       fillColor: Colors.black.withOpacity(0.2),
-    //       filled: true,
-    //       // prefixIcon: Icon(
-    //       //   LineIcons.gift,
-    //       //   color: Colors.white,
-    //       // ),
-    //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-    //       hintText: "Birthday ddmmyyyy",
-    //       hintStyle: TextStyle(
-    //         color: Colors.white,
-    //       ),
-    //     ));
-
     //phone name field
     final phoneNumberField = TextFormField(
         autofocus: false,
@@ -177,117 +125,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
             color: Colors.white,
           ),
         ));
-
-    // //streetaddress name field
-    // final streetAdressField = TextFormField(
-    //     autofocus: false,
-    //     controller: streetAddressEditingController,
-    //     keyboardType: TextInputType.name,
-    //     validator: (value) {
-    //       RegExp regex = new RegExp(r'^.{3,}$');
-    //       if (value!.isEmpty) {
-    //         return ("Address cannot be empty");
-    //       }
-    //       if (!regex.hasMatch(value)) {
-    //         return ("Enter valid name (Min. 3 characters)");
-    //       }
-    //       return null;
-    //     },
-    //     onSaved: (value) {
-    //       streetAddressEditingController.text = value!;
-    //     },
-    //     textInputAction: TextInputAction.next,
-    //     style: TextStyle(
-    //       color: Colors.white,
-    //     ),
-    //     decoration: InputDecoration(
-    //       fillColor: Colors.black.withOpacity(0.2),
-    //       filled: true,
-    //       // prefixIcon: Icon(
-    //       //   LineIcons.searchLocation,
-    //       //   color: Colors.white,
-    //       // ),
-    //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-    //       hintText: "Street address",
-    //       hintStyle: TextStyle(
-    //         color: Colors.white,
-    //       ),
-    //     ));
-
-    //city name field
-    // final cityField = DropdownButtonHideUnderline(
-    //     child: DropdownButtonFormField2(
-    //   dropdownDecoration: BoxDecoration(
-    //     borderRadius: BorderRadius.circular(14),
-    //     color: Colors.grey,
-    //   ),
-    //   isExpanded: true,
-    //   hint: const Text(
-    //     'Province',
-    //     style: TextStyle(color: Colors.white, fontSize: 14),
-    //   ),
-    //   items: locations
-    //       .map((item) => DropdownMenuItem<String>(
-    //             value: item,
-    //             child: Text(
-    //               item,
-    //               style: const TextStyle(
-    //                 color: Colors.white,
-    //                 fontSize: 14,
-    //               ),
-    //             ),
-    //           ))
-    //       .toList(),
-    //   validator: (value) {
-    //     if (value == null) {
-    //       return 'Province';
-    //     }
-    //   },
-    //   onChanged: (value) {
-    //     setState(() {
-    //       cityEditingController.text = value!;
-    //     });
-    //   },
-    //   onSaved: (value) {
-    //     cityEditingController.text = value!;
-    //   },
-    // ));
-
-    // //zipcode name field
-    // final zipcodeField = TextFormField(
-    //     autofocus: false,
-    //     controller: zipcodeEditingController,
-    //     keyboardType: TextInputType.name,
-    //     validator: (value) {
-    //       RegExp regex = new RegExp(r'^.{5,}$');
-    //       if (value!.isEmpty) {
-    //         return ("Birthday cannot be empty");
-    //       }
-    //       if (!regex.hasMatch(value)) {
-    //         return ("Enter valid name(Min. 5 characters)");
-    //       }
-    //       return null;
-    //     },
-    //     onSaved: (value) {
-    //       zipcodeEditingController.text = value!;
-    //     },
-    //     textInputAction: TextInputAction.next,
-    //     style: TextStyle(
-    //       color: Colors.white,
-    //     ),
-    //     decoration: InputDecoration(
-    //       fillColor: Colors.black.withOpacity(0.2),
-    //       filled: true,
-    //       prefixIcon: Icon(
-    //         LineIcons.city,
-    //         color: Colors.white,
-    //       ),
-    //       contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-    //       hintText: "Zipcode",
-    //       hintStyle: TextStyle(
-    //         color: Colors.white,
-    //       ),
-    //     ));
 
     //email field
     final emailField = TextFormField(
@@ -424,23 +261,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
           )),
     );
-
-    //Terms and Policy
-
-    // final checkTerms = Material(
-    //   elevation: 5,
-    //   borderRadius: BorderRadius.circular(30),
-    //   color: Colors.white,
-    //   child: TextButton(
-    //     onPressed: () {
-    //       url_launcher.launchUrl(terms);
-    //     },
-    //     child: Text(
-    //       "By signing up, I agree to terms, conditions and privacy policy",
-    //       style: GoogleFonts.bebasNeue(fontSize: 20, color: Colors.black),
-    //     ),
-    //   ),
-    // );
 
     return Scaffold(
       extendBodyBehindAppBar: true,
