@@ -22,7 +22,10 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
   // our form key
   final _formKey = GlobalKey<FormState>();
+  final nameEditingController = new TextEditingController();
   final descriptionEditingController = new TextEditingController();
+
+  bool checkboxBool = false;
 
   @override
   void dispose() {
@@ -33,6 +36,31 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   Widget build(BuildContext context) {
     // ENTER YOUR PERCEIVED CUSTOMER EXPERIENCE HOW LIKELY IS THE CUSTOMER LIKELY TO BUY A PRODUCT
+
+    final nameField = TextFormField(
+        autofocus: false,
+        controller: nameEditingController,
+        keyboardType: TextInputType.text,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        onSaved: (value) {
+          nameEditingController.text = value!;
+        },
+        textInputAction: TextInputAction.done,
+        style: TextStyle(
+          color: Colors.white,
+        ),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.black.withOpacity(0.2),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Enter the client's name.",
+          hintStyle: TextStyle(
+            color: Colors.white,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ));
 
     // NOTES
     final descriptionField = TextFormField(
@@ -77,6 +105,20 @@ class _FeedbackPageState extends State<FeedbackPage> {
             style: TextStyle(
                 fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
           )),
+    );
+
+    final reminderCheckbox = Row(
+      children: [
+        Text("Create a reminder"),
+        Checkbox(
+          value: checkboxBool,
+          onChanged: (bool? value) {
+            setState(() {
+              checkboxBool = value!;
+            });
+          },
+        ),
+      ],
     );
 
     return Scaffold(
@@ -161,7 +203,11 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       },
                     ),
                     SizedBox(height: 20),
+                    nameField,
+                    SizedBox(height: 15),
                     descriptionField,
+                    SizedBox(height: 15),
+                    reminderCheckbox,
                     SizedBox(height: 15),
                     createFeedbackButton,
                     SizedBox(height: 15),
