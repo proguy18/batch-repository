@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FeedbackModel {
+class NoteModel {
   num rating;
   String description;
 
-
-  FeedbackModel(
+  NoteModel(
     this.rating,
     this.description,
   );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telecomm_mobile/screens/batch_page.dart';
 import 'package:telecomm_mobile/screens/calling_page.dart';
-import 'package:telecomm_mobile/screens/feedback_page.dart';
+import 'package:telecomm_mobile/screens/notes_page.dart';
 import 'package:telecomm_mobile/screens/login_page.dart';
 import 'package:telecomm_mobile/screens/reminders_page.dart';
 import 'package:telecomm_mobile/widgets/navigation_button.dart';
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   final pages = {
     "Batch": BatchPage(),
     "Calling": CallingPage(),
-    "Feedback": FeedbackPage(),
+    "Note": NotesPage(),
     "Login": LoginPage(),
     "Reminders": RemindersPage()
   };
