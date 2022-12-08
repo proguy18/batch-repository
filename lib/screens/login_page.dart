@@ -333,9 +333,9 @@ class _LoginPageState extends State<LoginPage> {
     // _controller.dispose();
   }
 
-  Future<bool> isAdmin(uid) async {
-    var collectionReference =
-        await FirebaseFirestore.instance.collection("users").doc(uid).get();
-    return collectionReference.data()!['isAdmin'];
-  }
+  // Future<bool> isAdmin(uid) async {
+  //   var collectionReference =
+  //       await FirebaseFirestore.instance.collection("users").doc(uid).get();
+  //   return collectionReference.data()!['isAdmin'];
+  // }
 }

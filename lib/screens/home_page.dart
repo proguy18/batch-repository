@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     "Calling": CallingPage(),
     "Note": NotesPage(),
     "Login": LoginPage(),
-    "Reminders": RemindersPage()
+    "Reminders": RemindersPage(),
   };
 
   late final List pagesString = pages.keys.toList();

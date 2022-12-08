@@ -13,7 +13,7 @@ class NotesPage extends StatefulWidget {
 }
 
 class _NotesPageState extends State<NotesPage> {
-  final _auth = FirebaseAuth.instance;
+  User user = FirebaseAuth.instance.currentUser!;
 
   int selectedRating = 0;
 
@@ -297,6 +297,7 @@ class _NotesPageState extends State<NotesPage> {
         ?
         // Add notes to the notes collection and add a reminder
         noteCollection.add({
+            'userCreated': user.uid,
             'name': nameEditingController.text,
             'rating': selectedRating,
             'description': descriptionEditingController.text,
@@ -314,6 +315,7 @@ class _NotesPageState extends State<NotesPage> {
         :
         // Add notes to the notes collection
         noteCollection.add({
+            'userCreated': user.uid,
             'name': nameEditingController.text,
             'rating': selectedRating,
             'description': descriptionEditingController.text,
@@ -330,7 +332,7 @@ class _NotesPageState extends State<NotesPage> {
 
     // void createReminder() async {
     //   CollectionReference reminderCollection =
-    //       FirebaseFirestore.instance.collection('reminders');
+    //       FirebaseFirestore.instance.collection('notes');
 
     //   // Add the note to the notes collection
     //   reminderCollection.add({

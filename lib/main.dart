@@ -5,12 +5,23 @@ import 'package:telecomm_mobile/screens/home_page.dart';
 import 'package:telecomm_mobile/widgets/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'package:provider/provider.dart';
+import 'controllers/reminders_notifier.dart';
+
 VIClient client = Voximplant().getClient();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => RemindersNotifier()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
