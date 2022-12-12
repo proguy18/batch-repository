@@ -3,6 +3,7 @@ import 'package:telecomm_mobile/screens/batch_page.dart';
 import 'package:telecomm_mobile/screens/calling_page.dart';
 import 'package:telecomm_mobile/screens/notes_page.dart';
 import 'package:telecomm_mobile/screens/login_page.dart';
+import 'package:telecomm_mobile/screens/home_page copy.dart';
 import 'package:telecomm_mobile/screens/reminders_page.dart';
 import 'package:telecomm_mobile/widgets/navigation_button.dart';
 
@@ -17,6 +18,7 @@ class HomePage extends StatelessWidget {
     "Note": NotesPage(),
     "Login": LoginPage(),
     "Reminders": RemindersPage(),
+    "Home page Copy": HomePageCopy()
   };
 
   late final List pagesString = pages.keys.toList();

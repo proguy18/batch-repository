@@ -44,11 +44,7 @@ class _RemindersPageState extends State<RemindersPage> {
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/back2.jpg"),
-                    fit: BoxFit.cover,
-                    opacity: 1,
-                  ),
+                  color: Color.fromARGB(255, 15, 23, 25),
                   border: new Border.all(
                       color: Colors
                           .transparent), //color is transparent so that it does not blend with the actual color specified
@@ -57,19 +53,15 @@ class _RemindersPageState extends State<RemindersPage> {
                   alignment: Alignment.center,
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.8,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: GlassMorphism(
-                      blur: 20,
-                      opacity: 0.05,
-                      child: ListView.builder(
-                          itemCount: remindersList.length,
-                          itemBuilder: (context, index) {
-                            log('data: $remindersList');
-                            return RemindersCard(
-                              reminders: remindersList[index],
-                            );
-                          }),
-                    ),
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: ListView.builder(
+                        itemCount: remindersList.length,
+                        itemBuilder: (context, index) {
+                          log('data: $remindersList');
+                          return RemindersCard(
+                            reminders: remindersList[index],
+                          );
+                        }),
                   ),
                 )),
           );

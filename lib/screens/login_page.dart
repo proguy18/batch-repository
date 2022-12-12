@@ -77,19 +77,19 @@ class _LoginPageState extends State<LoginPage> {
         },
         textInputAction: TextInputAction.next,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.black,
         ),
         decoration: InputDecoration(
-          fillColor: Colors.black.withOpacity(0.2),
+          fillColor: Color.fromARGB(255, 187, 242, 70),
           filled: true,
           prefixIcon: Icon(
             Icons.mail,
-            color: Colors.white,
+            color: Colors.black,
           ),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Email",
           hintStyle: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ));
 
@@ -113,11 +113,11 @@ class _LoginPageState extends State<LoginPage> {
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           focusColor: Colors.white,
-          fillColor: Colors.black.withOpacity(0.2),
+          fillColor: Color.fromARGB(255, 187, 242, 70),
           filled: true,
           prefixIcon: Icon(
             Icons.vpn_key,
-            color: Colors.white,
+            color: Colors.black,
           ),
           suffixIcon: GestureDetector(
             onTap: () {
@@ -125,20 +125,20 @@ class _LoginPageState extends State<LoginPage> {
             },
             child: Icon(
               _showPassword ? Icons.visibility : Icons.visibility_off,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           hintStyle: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ));
 
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Colors.black,
+      color: Color.fromARGB(255, 206, 236, 245),
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
             "Login",
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           )),
     );
 
@@ -159,6 +159,9 @@ class _LoginPageState extends State<LoginPage> {
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 15, 23, 25),
+            ),
             child: Stack(
               children: [
                 //1
@@ -214,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                             children: <Widget>[
                               Text(
                                 "Don't have an account? ",
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Colors.white),
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -228,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                                 child: Text(
                                   "Sign up",
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15),
                                 ),
@@ -248,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text(
                               "Forgot password",
                               style: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15),
                             ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:telecomm_mobile/widgets/rating.dart';
 
 class NotesPage extends StatefulWidget {
@@ -95,7 +96,7 @@ class _NotesPageState extends State<NotesPage> {
     final createnoteButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Colors.black,
+      color: Color.fromARGB(255, 187, 242, 70),
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
@@ -106,8 +107,8 @@ class _NotesPageState extends State<NotesPage> {
           child: Text(
             "Send note",
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+            style: GoogleFonts.openSans(
+                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           )),
     );
 
@@ -144,6 +145,7 @@ class _NotesPageState extends State<NotesPage> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
+              color: Color.fromARGB(255, 15, 23, 25),
               // image: DecorationImage(
               //   image: AssetImage("assets/back2.jpg"),
               //   fit: BoxFit.cover,
