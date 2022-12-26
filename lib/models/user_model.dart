@@ -2,7 +2,7 @@ class UserModel {
   String? uid;
   String? email;
   String? fullName;
-  // int? birthDay;
+  int? batchNo;
   int? phoneNumber;
   // String? streetAddress;
   // String? city;
@@ -13,7 +13,7 @@ class UserModel {
       {this.uid,
       this.email,
       this.fullName,
-      // this.birthDay,
+      this.batchNo,
       this.phoneNumber,
       // this.streetAddress,
       // this.city,
@@ -27,7 +27,7 @@ class UserModel {
         uid: map['uid'],
         email: map['email'],
         fullName: map['fullName'],
-        // birthDay: map['birthDay'],
+        batchNo: map['batchNo'],
         phoneNumber: map['phoneNumber'],
         // streetAddress: map['streetAddress'],
         // city: map['city'],
@@ -42,7 +42,7 @@ class UserModel {
       'uid': uid,
       'email': email,
       'fullName': fullName,
-      // 'birthDay': birthDay,
+      'batchNo': batchNo,
       'phoneNumber': phoneNumber,
       // 'streetAddress': streetAddress,
       // 'city': city,
@@ -55,7 +55,7 @@ class UserModel {
         uid: json['uid'],
         email: json['email'],
         fullName: json['fullName'],
-        // birthDay: json['birthDay'],
+        batchNo: json['batchNo'],
         phoneNumber: json['phoneNumber'],
         // streetAddress: json['streetAddress'],
         // city: json['city'],
