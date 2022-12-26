@@ -3,14 +3,14 @@ import 'package:flutter_voximplant/flutter_voximplant.dart';
 import 'package:telecomm_mobile/widgets/call.dart';
 // import 'package:vox/services/auth_service.dart';
 
-class LoginButton extends StatefulWidget {
-  const LoginButton({Key? key}) : super(key: key);
+class DemoCall extends StatefulWidget {
+  const DemoCall({Key? key}) : super(key: key);
 
   @override
-  State<LoginButton> createState() => _LoginButtonState();
+  State<DemoCall> createState() => _DemoCallState();
 }
 
-class _LoginButtonState extends State<LoginButton> {
+class _DemoCallState extends State<DemoCall> {
   VIClient client = Voximplant().getClient();
   String displayName = "Test";
 

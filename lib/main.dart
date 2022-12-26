@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_voximplant/flutter_voximplant.dart';
 import 'package:telecomm_mobile/screens/home_page.dart';
-import 'package:telecomm_mobile/widgets/login.dart';
+import 'package:telecomm_mobile/widgets/demo_call.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:provider/provider.dart';

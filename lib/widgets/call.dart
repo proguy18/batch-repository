@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_voximplant/flutter_voximplant.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:telecomm_mobile/screens/calling_page.dart';
+
+import 'custom_page_route.dart';
 
 class CallButton extends StatelessWidget {
   final String phoneNumber;
@@ -17,6 +20,9 @@ class CallButton extends StatelessWidget {
 
             if (microphoneStatus == PermissionStatus.granted) {
               handleCall(phoneNumber);
+              Navigator.of(context).push(
+                CustomPageRoute(child: CallingPage()),
+              );
             }
 
             if (microphoneStatus == PermissionStatus.denied) {
