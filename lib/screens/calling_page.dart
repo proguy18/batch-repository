@@ -16,19 +16,19 @@ class CallingPage extends StatefulWidget {
 class _CallingPageState extends State<CallingPage> {
   // const name({Key? key}) : super(key: key);
 
-  late VideoPlayerController _controller;
+  // late VideoPlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset('assets/video.mp4')
-      ..initialize().then((_) {
-        _controller.play();
-        _controller.setLooping(true);
-        _controller.setVolume(0.0);
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
+    // _controller = VideoPlayerController.asset('assets/video.mp4')
+    //   ..initialize().then((_) {
+    //     _controller.play();
+    //     _controller.setLooping(true);
+    //     _controller.setVolume(0.0);
+    //     Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+    //     setState(() {});
+    //   });
   }
 
   @override
@@ -46,13 +46,13 @@ class _CallingPageState extends State<CallingPage> {
                   SizedBox.expand(
                     child: FittedBox(
                       fit: BoxFit.cover,
-                      child: SizedBox(
-                        width: _controller.value.size.width ?? 0,
-                        height: _controller.value.size.height ?? 0,
-                        child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 10),
-                            child: VideoPlayer(_controller)),
-                      ),
+                      // child: SizedBox(
+                      //   // width: _controller.value.size.width ?? 0,
+                      //   // height: _controller.value.size.height ?? 0,
+                      //   child: BackdropFilter(
+                      //       filter: ImageFilter.blur(sigmaX: 20, sigmaY: 10),
+                      //       // child: VideoPlayer(_controller)),
+                      // ),
                     ),
                   ),
                   //2
