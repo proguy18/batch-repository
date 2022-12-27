@@ -2,10 +2,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:telecomm_mobile/models/booking_model.dart';
 
 getBatch() {
-  var batch = FirebaseFirestore.instance.collection('batches');
+  var snapshot = FirebaseFirestore.instance
+      .collection('availableBatches')
+      .orderBy('batchNo', descending: false)
+      .limit(1)
+      .get();
+  // .then((snapshot) {
+  //   DocumentSnapshot firstDocument = snapshot.docs.first;
+  //   Map<String, dynamic> data = firstDocument.data;
+  // });
+
+  // var firstDocument = snapshot.documents.first;
+
   // .where('dateTime', isGreaterThanOrEqualTo: getToday())
   // .orderBy('dateTime', descending: false);
-  return batch.get();
+  // var unavailableBatchCollection =
+  //     FirebaseFirestore.instance.collection('unavailableBatches');
+
+  // // unavailableBatchCollection.set(batch)
+
+  // return batch.get().then((batchRef) {
+  //   print(batchRef);
+  // });
 }
 
 // getUserBatch(String uid) {

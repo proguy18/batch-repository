@@ -10,9 +10,8 @@ class Batchervice {
     return batch.map((snapshot) {
       var batchMap = snapshot.data();
       return BatchModel(
-        batchMap['batchNo'],
-        batchMap['isTaken'],
-        
+        batchNo: batchMap['batchNo'],
+        batchCollection: batchMap['batchCollection']
       );
     }).toList();
   }

@@ -51,15 +51,15 @@ class UserModel {
     };
   }
 
-  static UserModel fromJson(Map<String, dynamic> json) => UserModel(
-        uid: json['uid'],
-        email: json['email'],
-        fullName: json['fullName'],
-        batchNo: json['batchNo'],
-        phoneNumber: json['phoneNumber'],
-        // streetAddress: json['streetAddress'],
-        // city: json['city'],
-        // zipcode: json['zipcode'],
-        // isAdmin: json['isAdmin'],
-  );
+  // static UserModel fromMap(Map<String, dynamic> map) => UserModel(
+  //       uid: map['uid'],
+  //       email: map['email'],
+  //       fullName: map['fullName'],
+  //       batchNo: map['batchNo'],
+  //       phoneNumber: map['phoneNumber'],
+  //       // streetAddress: map['streetAddress'],
+  //       // city: map['city'],
+  //       // zipcode: map['zipcode'],
+  //       // isAdmin: map['isAdmin'],
+  // );
 }
