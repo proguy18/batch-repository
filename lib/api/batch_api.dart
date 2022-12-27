@@ -5,8 +5,10 @@ getBatch() {
   var snapshot = FirebaseFirestore.instance
       .collection('availableBatches')
       .orderBy('batchNo', descending: false)
-      .limit(1)
-      .get();
+      .limit(1);
+
+  return snapshot.get();
+
   // .then((snapshot) {
   //   DocumentSnapshot firstDocument = snapshot.docs.first;
   //   Map<String, dynamic> data = firstDocument.data;

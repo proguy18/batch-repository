@@ -69,7 +69,7 @@ class _BatchPageState extends State<BatchPage> {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            "Batch",
+                            "Reminders",
                             style: GoogleFonts.montserrat(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w600,
@@ -90,10 +90,13 @@ class _BatchPageState extends State<BatchPage> {
                         height: MediaQuery.of(context).size.height * 0.175,
                         child: Padding(
                           padding: const EdgeInsets.all(18.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [],
-                          ),
+                          child: 
+                          Text("Nothing")
+                          // child: ContactCard(name: name, type: type, phone: phone)
+                          // child: Row(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   children: [],
+                          // ),
                         ),
                       ),
                     ),

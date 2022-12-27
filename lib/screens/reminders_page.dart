@@ -1,12 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telecomm_mobile/controllers/reminders_notifier.dart';
 import 'package:telecomm_mobile/models/reminders_model.dart';
 import 'package:provider/provider.dart';
 import 'package:telecomm_mobile/glassmorphism/glassmorphism.dart';
+import 'package:telecomm_mobile/models/user_model.dart';
 import '../widgets/reminders_card.dart';
-
-import 'dart:developer';
 // import 'admin_reminders_card_widget.dart';
 
 class RemindersPage extends StatefulWidget {
@@ -17,10 +18,22 @@ class RemindersPage extends StatefulWidget {
 }
 
 class _RemindersPageState extends State<RemindersPage> {
+  User user = FirebaseAuth.instance.currentUser!;
+  UserModel loggedInUser = UserModel();
+
+  
   @override
   void initState() {
     super.initState();
-    Provider.of<RemindersNotifier>(context, listen: false).fetchReminders();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.uid)
+        .get()
+        .then((value) {
+      this.loggedInUser = UserModel.fromMap(value.data());
+      Provider.of<RemindersNotifier>(context, listen: false).fetchReminders();
+      setState(() {});
+    });
   }
 
   @override
