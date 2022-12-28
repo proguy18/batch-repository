@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ContactCard extends StatelessWidget {
-  final String name;
-  final String type;
-  final String phone;
+import '../models/batch_collection_model.dart';
 
-  ContactCard({required this.name, required this.type, required this.phone});
+class ContactCard extends StatelessWidget {
+  final BatchCollectionModel batchCollectionModel;
+
+  ContactCard({required this.batchCollectionModel});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ContactCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  batchCollectionModel.name,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -27,7 +27,7 @@ class ContactCard extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  type,
+                  batchCollectionModel.type,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -35,7 +35,7 @@ class ContactCard extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  phone,
+                  batchCollectionModel.number.toString(),
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,

@@ -87,23 +87,18 @@ class _BatchPageState extends State<BatchPage> {
                       opacity: 0.05,
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.9,
-                        height: MediaQuery.of(context).size.height * 0.175,
-                        child: Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: 
-                          Text("Nothing")
-                          // child: ContactCard(name: name, type: type, phone: phone)
-                          // child: Row(
-                          //   mainAxisAlignment: MainAxisAlignment.start,
-                          //   children: [],
-                          // ),
-                        ),
+                        height: MediaQuery.of(context).size.height * 0.7,
+                        child: ListView.builder(
+                            itemCount: batchList[0].batchCollection.length,
+                            itemBuilder: (context, index) {
+                              return ContactCard(
+                                batchCollectionModel:
+                                    batchList[0].batchCollection[index],
+                              );
+                            }),
                       ),
                     ),
                   ),
-                  //Row2
-
-                  //row3
                 ],
               ),
             ),

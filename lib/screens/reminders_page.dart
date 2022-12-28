@@ -21,7 +21,6 @@ class _RemindersPageState extends State<RemindersPage> {
   User user = FirebaseAuth.instance.currentUser!;
   UserModel loggedInUser = UserModel();
 
-  
   @override
   void initState() {
     super.initState();
@@ -88,7 +87,7 @@ class _RemindersPageState extends State<RemindersPage> {
                       opacity: 0.05,
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.9,
-                        height: MediaQuery.of(context).size.height * 0.175,
+                        height: MediaQuery.of(context).size.height * 0.7,
                         child: Padding(
                           padding: const EdgeInsets.all(18.0),
                           child: ListView.builder(
