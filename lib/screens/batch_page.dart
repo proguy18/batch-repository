@@ -38,23 +38,24 @@ class _BatchPageState extends State<BatchPage> {
   Widget build(BuildContext context) {
     // getNextBatch();
     return Selector<BatchNotifier, List<BatchModel>>(
-        selector: (_, notifier) => notifier.batchList,
-        builder: (_, batchList, __) {
-          return Scaffold(
-              body: Align(
+      selector: (_, notifier) => notifier.batchList,
+      builder: (_, batchList, __) {
+        return Scaffold(
+          body: Align(
             alignment: Alignment.center,
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Color.fromARGB(255, 15, 23, 25),
-                  Colors.black,
-                ],
-              )),
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [
+                    Color.fromARGB(255, 15, 23, 25),
+                    Colors.black,
+                  ],
+                ),
+              ),
               child: Column(
                 children: [
                   //top gap
@@ -98,14 +99,27 @@ class _BatchPageState extends State<BatchPage> {
                       ),
                     ),
                   ),
+                  // "Dump and get next batch" button
+                  TextButton(
+                    onPressed: () {
+                      // Call the dumpBatch and getNextBatch functions here
+                      dumpAndGetNextBatch(loggedInUser);
+                    },
+                    child: Text("Dump and get next batch"),
+                  ),
                 ],
               ),
             ),
-          ));
-        });
+          ),
+        );
+      },
+    );
   }
 
-  void dumpAndGetNextBatch() {}
+  void dumpAndGetNextBatch(UserModel user) {
+    dumpCurrentBatch(user);
+    moveNextBatch();
+  }
 
   void dumpCurrentBatch(UserModel user) {
     DocumentReference<Map<String, dynamic>> userCollection =
@@ -121,11 +135,54 @@ class _BatchPageState extends State<BatchPage> {
         (error) => print("Failed to dump user's current batch: $error"));
   }
 
-  void getNextBatch() {
-    var contact = FirebaseFirestore.instance
-        .collection('batches')
-        .orderBy('batchNo', descending: false);
+  // void getNextBatch() {
+  //   var contact = FirebaseFirestore.instance
+  //       .collection('batches')
+  //       .orderBy('batchNo', descending: false);
 
-    print(contact.get());
+  //   print(contact.get());
+  // }
+
+  void moveNextBatch() async {
+    QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('availableBatches')
+        .orderBy('batchNo', descending: false)
+        .limit(1)
+        .get();
+
+    List<DocumentSnapshot> documents = snapshot.docs;
+    for (var document in documents) {
+      Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+
+      // Get the collection reference for the source and destination collections
+      CollectionReference sourceCollection =
+          document.reference.collection('batchCollection');
+
+      CollectionReference destinationCollection = FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .collection('currentBatch');
+      // .doc(document.id)
+      // .collection('batchCollection');
+
+      // Get the documents in the source subcollection
+      QuerySnapshot subcollectionSnapshot = await sourceCollection.get();
+      List<DocumentSnapshot> subcollectionDocuments =
+          subcollectionSnapshot.docs;
+
+      // Add each document in the subcollection to the destination subcollection
+      for (var subcollectionDocument in subcollectionDocuments) {
+        Map<String, dynamic> subcollectionData =
+            subcollectionDocument.data() as Map<String, dynamic>;
+        await destinationCollection.add(subcollectionData);
+        await subcollectionDocument.reference.delete();
+      }
+
+      // // Add the data for the original document to the destination collection
+      // await destinationCollection.parent!.set(data);
+
+      // Delete the original document
+      await document.reference.delete();
+    }
   }
 }
