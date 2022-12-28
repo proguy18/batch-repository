@@ -18,10 +18,10 @@ getBatch() {
 
   // .where('dateTime', isGreaterThanOrEqualTo: getToday())
   // .orderBy('dateTime', descending: false);
-  // var unavailableBatchCollection =
+  // var unavailableContact =
   //     FirebaseFirestore.instance.collection('unavailableBatches');
 
-  // // unavailableBatchCollection.set(batch)
+  // // unavailableContact.set(batch)
 
   // return batch.get().then((batchRef) {
   //   print(batchRef);

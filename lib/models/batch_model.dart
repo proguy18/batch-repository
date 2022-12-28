@@ -1,22 +1,21 @@
 import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:telecomm_mobile/models/batch_collection_model.dart';
+import 'package:telecomm_mobile/models/contact_model.dart';
 
 class BatchModel {
   final num batchNo;
-  final List<BatchCollectionModel> batchCollection;
+  final List<ContactModel> contact;
 
   BatchModel({
     required this.batchNo,
-    required this.batchCollection,
+    required this.contact,
   });
 
   factory BatchModel.fromMap(Map<String, dynamic> map) {
     return BatchModel(
-      batchCollection: map['batchCollection']
-          .map<BatchCollectionModel>(
-              (batch) => BatchCollectionModel.fromMap(batch))
+      contact: map['contact']
+          .map<ContactModel>((batch) => ContactModel.fromMap(batch))
           .toList(),
       batchNo: map['batchNo'],
     );
@@ -24,7 +23,7 @@ class BatchModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'batchCollection': batchCollection.map((batch) => batch.toMap()).toList(),
+      'contact': contact.map((batch) => batch.toMap()).toList(),
       'batchNo': batchNo,
     };
   }

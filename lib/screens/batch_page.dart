@@ -89,11 +89,10 @@ class _BatchPageState extends State<BatchPage> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: MediaQuery.of(context).size.height * 0.7,
                         child: ListView.builder(
-                            itemCount: batchList[0].batchCollection.length,
+                            itemCount: batchList[0].contact.length,
                             itemBuilder: (context, index) {
                               return ContactCard(
-                                batchCollectionModel:
-                                    batchList[0].batchCollection[index],
+                                contactModel: batchList[0].contact[index],
                               );
                             }),
                       ),
@@ -123,10 +122,10 @@ class _BatchPageState extends State<BatchPage> {
   }
 
   void getNextBatch() {
-    var batchCollection = FirebaseFirestore.instance
+    var contact = FirebaseFirestore.instance
         .collection('batches')
         .orderBy('batchNo', descending: false);
 
-    print(batchCollection.get());
+    print(contact.get());
   }
 }

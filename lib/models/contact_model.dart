@@ -2,18 +2,15 @@ import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class BatchCollectionModel {
+class ContactModel {
   final String name;
   final num number;
   final String type;
 
-  BatchCollectionModel(
-      {required this.name,
-      required this.number,
-      required this.type});
+  ContactModel({required this.name, required this.number, required this.type});
 
-  factory BatchCollectionModel.fromMap(Map<String, dynamic> map) {
-    return BatchCollectionModel(
+  factory ContactModel.fromMap(Map<String, dynamic> map) {
+    return ContactModel(
       name: map['Name'],
       number: map['Nomor'],
       type: map['Type'],
