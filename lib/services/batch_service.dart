@@ -13,7 +13,7 @@ class Batchervice {
     List<Future<BatchModel>> batchModels = batch.map((snapshot) async {
       var batchMap = snapshot.data();
       DocumentReference batchRef = snapshot.reference;
-      CollectionReference contactRef = batchRef.collection('contact');
+      CollectionReference contactRef = batchRef.collection('batchCollection');
       QuerySnapshot contactSnapshot = await contactRef.get();
       List<ContactModel> contact = contactSnapshot.docs
           .map(

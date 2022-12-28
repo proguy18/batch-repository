@@ -69,7 +69,7 @@ class _BatchPageState extends State<BatchPage> {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            "Reminders",
+                            "Contacts",
                             style: GoogleFonts.montserrat(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w600,
