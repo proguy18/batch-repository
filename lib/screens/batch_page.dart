@@ -2,21 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telecomm_mobile/controllers/contact_notifier.dart';
+import 'package:telecomm_mobile/controllers/batch_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:telecomm_mobile/glassmorphism/glassmorphism.dart';
 import 'package:telecomm_mobile/models/contact_model.dart';
 import 'package:telecomm_mobile/models/user_model.dart';
 import '../widgets/contact_card.dart';
 
-class ContactPage extends StatefulWidget {
-  const ContactPage({Key? key}) : super(key: key);
+class BatchPage extends StatefulWidget {
+  const BatchPage({Key? key}) : super(key: key);
 
   @override
-  _ContactPageState createState() => _ContactPageState();
+  _BatchPageState createState() => _BatchPageState();
 }
 
-class _ContactPageState extends State<ContactPage> {
+class _BatchPageState extends State<BatchPage> {
   User user = FirebaseAuth.instance.currentUser!;
   UserModel loggedInUser = UserModel();
 
@@ -29,17 +29,18 @@ class _ContactPageState extends State<ContactPage> {
         .get()
         .then((value) {
       this.loggedInUser = UserModel.fromMap(value.data());
-      Provider.of<ContactNotifier>(context, listen: false).fetchContact(loggedInUser.uid);
+      Provider.of<BatchNotifier>(context, listen: false)
+          .fetchBatch(loggedInUser.uid);
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // getNextContact();
-    return Selector<ContactNotifier, List<ContactModel>>(
-      selector: (_, notifier) => notifier.contactList,
-      builder: (_, contactList, __) {
+    // getNextBatch();
+    return Selector<BatchNotifier, List<ContactModel>>(
+      selector: (_, notifier) => notifier.batchList,
+      builder: (_, batchList, __) {
         return Scaffold(
           body: Align(
             alignment: Alignment.center,
@@ -70,7 +71,7 @@ class _ContactPageState extends State<ContactPage> {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            "Contacts",
+                            "Batches",
                             style: GoogleFonts.montserrat(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w600,
@@ -90,20 +91,20 @@ class _ContactPageState extends State<ContactPage> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: MediaQuery.of(context).size.height * 0.7,
                         child: ListView.builder(
-                            itemCount: contactList.length,
+                            itemCount: batchList.length,
                             itemBuilder: (context, index) {
                               return ContactCard(
-                                contactModel: contactList[index],
+                                contactModel: batchList[index],
                               );
                             }),
                       ),
                     ),
                   ),
-                  // "Dump and get next contact" button
+                  // "Dump and get next batch" button
                   TextButton(
                     onPressed: () {
-                      // Call the dumpContact and getNextContact functions here
-                      dumpAndGetNextContact(loggedInUser);
+                      // Call the dumpBatch and getNextBatch functions here
+                      dumpAndGetNextBatch(loggedInUser);
                     },
                     child: Text("Dump and get next batch"),
                   ),
@@ -116,24 +117,24 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 
-  void dumpAndGetNextContact(UserModel user) async {
-    dumpCurrentContact(user);
-    moveNextContact();
+  void dumpAndGetNextBatch(UserModel user) async {
+    dumpCurrentBatch(user);
+    moveNextBatch();
   }
 
-  void dumpCurrentContact(UserModel user) async {
+  void dumpCurrentBatch(UserModel user) async {
     CollectionReference sourceCollection = FirebaseFirestore.instance
         .collection("users")
         .doc(user.uid)
-        .collection('currentContact');
+        .collection('currentBatch');
 
-    // If no contactes to dump, do nothing
+    // If no batches to dump, do nothing
     if (sourceCollection == null) {
       return;
     }
 
     CollectionReference destinationCollection =
-        FirebaseFirestore.instance.collection('dumpedContactes');
+        FirebaseFirestore.instance.collection('dumpedBatches');
 
     QuerySnapshot snapshot = await sourceCollection.get();
     List<DocumentSnapshot> documents = snapshot.docs;
@@ -145,18 +146,18 @@ class _ContactPageState extends State<ContactPage> {
     }
   }
 
-  // void getNextContact() {
-  //   var contact = FirebaseFirestore.instance
-  //       .collection('contactes')
-  //       .orderBy('contactNo', descending: false);
+  // void getNextBatch() {
+  //   var batch = FirebaseFirestore.instance
+  //       .collection('batches')
+  //       .orderBy('batchNo', descending: false);
 
-  //   print(contact.get());
+  //   print(batch.get());
   // }
 
-  void moveNextContact() async {
+  void moveNextBatch() async {
     QuerySnapshot snapshot = await FirebaseFirestore.instance
-        .collection('availableContactes')
-        .orderBy('contactNo', descending: false)
+        .collection('availableBatches')
+        .orderBy('batchNo', descending: false)
         .limit(1)
         .get();
 
@@ -166,14 +167,14 @@ class _ContactPageState extends State<ContactPage> {
 
       // Get the collection reference for the source and destination collections
       CollectionReference sourceCollection =
-          document.reference.collection('contactCollection');
+          document.reference.collection('batchCollection');
 
       CollectionReference destinationCollection = FirebaseFirestore.instance
           .collection("users")
           .doc(user.uid)
-          .collection('currentContact');
+          .collection('currentBatch');
       // .doc(document.id)
-      // .collection('contactCollection');
+      // .collection('batchCollection');
 
       // Get the documents in the source subcollection
       QuerySnapshot subcollectionSnapshot = await sourceCollection.get();

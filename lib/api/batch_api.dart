@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:telecomm_mobile/models/booking_model.dart';
 
-getContact(uid) {
+getBatch(uid) {
   var snapshot = FirebaseFirestore.instance
       .collection('users').doc(uid).collection('currentBatch');
       
@@ -16,10 +16,10 @@ getContact(uid) {
 
   // .where('dateTime', isGreaterThanOrEqualTo: getToday())
   // .orderBy('dateTime', descending: false);
-  // var unavailableContact =
+  // var unavailableBatch =
   //     FirebaseFirestore.instance.collection('unavailableBatches');
 
-  // // unavailableContact.set(batch)
+  // // unavailableBatch.set(batch)
 
   // return batch.get().then((batchRef) {
   //   print(batchRef);
