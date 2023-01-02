@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:telecomm_mobile/screens/batch_page.dart';
+import 'package:telecomm_mobile/screens/contact_page.dart';
 import 'package:telecomm_mobile/screens/calling_page.dart';
 import 'package:telecomm_mobile/screens/notes_page.dart';
 import 'package:telecomm_mobile/screens/login_page.dart';
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   // final pages = List.generate(5, (index) => '$index');
   final controller = ScrollController();
   final pages = {
-    "Batch": BatchPage(),
+    "Contact": ContactPage(),
     "Calling": CallingPage(),
     "Note": NotesPage(),
     "Login": LoginPage(),

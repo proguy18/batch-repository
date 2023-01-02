@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_voximplant/flutter_voximplant.dart';
-import 'package:telecomm_mobile/controllers/batch_notifier.dart';
+import 'package:telecomm_mobile/controllers/contact_notifier.dart';
 import 'package:telecomm_mobile/screens/home_page.dart';
 import 'package:telecomm_mobile/widgets/demo_call.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +19,7 @@ Future main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => RemindersNotifier()),
-        ChangeNotifierProvider(create: (_) => BatchNotifier()),
+        ChangeNotifierProvider(create: (_) => ContactNotifier()),
       ],
       child: MyApp(),
     ),

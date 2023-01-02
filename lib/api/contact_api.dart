@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:telecomm_mobile/models/booking_model.dart';
 
-getBatch(uid) {
+getContact(uid) {
   var snapshot = FirebaseFirestore.instance
       .collection('users').doc(uid).collection('currentBatch');
       

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:telecomm_mobile/screens/batch_page.dart';
+import 'package:telecomm_mobile/screens/contact_page.dart';
 import 'package:telecomm_mobile/screens/calling_page.dart';
 import 'package:telecomm_mobile/screens/notes_page.dart';
 import 'package:telecomm_mobile/screens/login_page.dart';
@@ -14,7 +14,7 @@ class HomePageCopy extends StatelessWidget {
   // final pages = List.generate(5, (index) => '$index');
   final controller = ScrollController();
   final pages = {
-    "Batch": BatchPage(),
+    "Contact": ContactPage(),
     "Calling": CallingPage(),
     "Note": NotesPage(),
     "Login": LoginPage(),
@@ -98,7 +98,7 @@ class HomePageCopy extends StatelessWidget {
                           children: [
                             IconButton(
                               icon: Image.asset(
-                                "assets/batch.png",
+                                "assets/contact.png",
                                 fit: BoxFit.contain,
                               ),
                               onPressed: () {},
@@ -127,7 +127,7 @@ class HomePageCopy extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              "Batch",
+                              "Contact",
                               style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 20,
