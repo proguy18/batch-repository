@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telecomm_mobile/controllers/batch_notifier.dart';
-import 'package:telecomm_mobile/models/batch_model.dart';
 import 'package:provider/provider.dart';
 import 'package:telecomm_mobile/glassmorphism/glassmorphism.dart';
+import 'package:telecomm_mobile/models/contact_model.dart';
 import 'package:telecomm_mobile/models/user_model.dart';
 import '../widgets/contact_card.dart';
 
@@ -29,7 +29,7 @@ class _BatchPageState extends State<BatchPage> {
         .get()
         .then((value) {
       this.loggedInUser = UserModel.fromMap(value.data());
-      Provider.of<BatchNotifier>(context, listen: false).fetchBatch();
+      Provider.of<BatchNotifier>(context, listen: false).fetchBatch(loggedInUser.uid);
       setState(() {});
     });
   }
@@ -37,7 +37,7 @@ class _BatchPageState extends State<BatchPage> {
   @override
   Widget build(BuildContext context) {
     // getNextBatch();
-    return Selector<BatchNotifier, List<BatchModel>>(
+    return Selector<BatchNotifier, List<ContactModel>>(
       selector: (_, notifier) => notifier.batchList,
       builder: (_, batchList, __) {
         return Scaffold(
@@ -90,10 +90,10 @@ class _BatchPageState extends State<BatchPage> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: MediaQuery.of(context).size.height * 0.7,
                         child: ListView.builder(
-                            itemCount: batchList[0].contact.length,
+                            itemCount: batchList.length,
                             itemBuilder: (context, index) {
                               return ContactCard(
-                                contactModel: batchList[0].contact[index],
+                                contactModel: batchList[index],
                               );
                             }),
                       ),
@@ -116,23 +116,33 @@ class _BatchPageState extends State<BatchPage> {
     );
   }
 
-  void dumpAndGetNextBatch(UserModel user) {
+  void dumpAndGetNextBatch(UserModel user) async {
     dumpCurrentBatch(user);
     moveNextBatch();
   }
 
-  void dumpCurrentBatch(UserModel user) {
-    DocumentReference<Map<String, dynamic>> userCollection =
-        FirebaseFirestore.instance.collection('users').doc(user.uid);
+  void dumpCurrentBatch(UserModel user) async {
+    CollectionReference sourceCollection = FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.uid)
+        .collection('currentBatch');
 
-    userCollection.set({
-      'uid': user.uid,
-      'email': user.email,
-      'fullName': user.fullName,
-      'batchNo': null,
-      'phoneNumber': user.phoneNumber
-    }).catchError(
-        (error) => print("Failed to dump user's current batch: $error"));
+    // If no batches to dump, do nothing
+    if (sourceCollection == null) {
+      return;
+    }
+
+    CollectionReference destinationCollection =
+        FirebaseFirestore.instance.collection('dumpedBatches');
+
+    QuerySnapshot snapshot = await sourceCollection.get();
+    List<DocumentSnapshot> documents = snapshot.docs;
+
+    for (var document in documents) {
+      Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+      await destinationCollection.add(data);
+      await document.reference.delete();
+    }
   }
 
   // void getNextBatch() {

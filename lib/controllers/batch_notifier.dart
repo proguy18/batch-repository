@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:telecomm_mobile/models/batch_model.dart';
+import 'package:telecomm_mobile/models/contact_model.dart';
 import 'package:telecomm_mobile/services/batch_service.dart';
 
 class BatchNotifier extends ChangeNotifier {
-  List<BatchModel> _batchList = [];
-  List<BatchModel> get batchList => _batchList;
+  List<ContactModel> _batchList = [];
+  List<ContactModel> get batchList => _batchList;
 
   final Batchervice _batchervice = Batchervice();
 
-  Future<void> fetchBatch() async {
-    _batchList = await _batchervice.fetchBatch();
+  Future<void> fetchBatch(uid) async {
+    _batchList = await _batchervice.fetchBatch(uid);
     notifyListeners();
   }
 

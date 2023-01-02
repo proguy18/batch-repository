@@ -7,24 +7,12 @@ import '../models/contact_model.dart';
 class Batchervice {
   final BatchRepository _batchRepository = BatchRepository();
 
-  Future<List<BatchModel>> fetchBatch() async {
-    var batch = await _batchRepository.fetchAllBatch();
+  Future<List<ContactModel>> fetchBatch(uid) async {
+    var batch = await _batchRepository.fetchAllBatch(uid);
 
-    List<Future<BatchModel>> batchModels = batch.map((snapshot) async {
-      var batchMap = snapshot.data();
-      DocumentReference batchRef = snapshot.reference;
-      CollectionReference contactRef = batchRef.collection('batchCollection');
-      QuerySnapshot contactSnapshot = await contactRef.get();
-      List<ContactModel> contact = contactSnapshot.docs
-          .map(
-              (doc) => ContactModel.fromMap(doc.data() as Map<String, dynamic>))
-          .toList();
-      return BatchModel(
-        batchNo: batchMap['batchNo'],
-        contact: contact,
-      );
+    return batch.map((snapshot) {
+      var contactMap = snapshot.data();
+      return ContactModel.fromMap(contactMap);
     }).toList();
-
-    return Future.wait(batchModels);
   }
 }

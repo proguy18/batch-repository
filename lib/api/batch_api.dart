@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:telecomm_mobile/models/booking_model.dart';
 
-getBatch() {
+getBatch(uid) {
   var snapshot = FirebaseFirestore.instance
-      .collection('availableBatches')
-      .orderBy('batchNo', descending: false)
-      .limit(1);
-
+      .collection('users').doc(uid).collection('currentBatch');
+      
   return snapshot.get();
 
   // .then((snapshot) {

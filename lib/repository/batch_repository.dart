@@ -5,8 +5,8 @@ import '../models/batch_model.dart';
 
 class BatchRepository {
   Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> 
-  fetchAllBatch() async {
-    var snapshot = await getBatch();
+  fetchAllBatch(uid) async {
+    var snapshot = await getBatch(uid);
     return snapshot.docs;
   }
 
