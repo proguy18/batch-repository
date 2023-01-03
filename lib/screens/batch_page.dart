@@ -84,9 +84,7 @@ class _BatchPageState extends State<BatchPage> {
                   //Row 1
                   Padding(
                     padding: const EdgeInsets.all(13.0),
-                    child: GlassMorphism(
-                      blur: 10,
-                      opacity: 0.05,
+                    child: Container(
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: MediaQuery.of(context).size.height * 0.7,

@@ -56,9 +56,19 @@ class _CallingPageState extends State<CallingPage> {
                     ),
                   ),
                   //2
-                  GlassMorphism(
-                      blur: 10,
-                      opacity: 0.05,
+                  Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color.fromARGB(255, 15, 23, 25),
+                            Colors.black,
+                          ],
+                        ),
+                      ),
                       child: Column(
                         children: [
                           //1
@@ -106,7 +116,7 @@ class _CallingPageState extends State<CallingPage> {
                                 height:
                                     MediaQuery.of(context).size.width * 0.175,
                                 decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.white.withOpacity(0.8),
                                     shape: BoxShape.circle),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -127,7 +137,7 @@ class _CallingPageState extends State<CallingPage> {
                                   height:
                                       MediaQuery.of(context).size.width * 0.175,
                                   decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.2),
+                                      color: Colors.white.withOpacity(0.8),
                                       shape: BoxShape.circle),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -147,7 +157,7 @@ class _CallingPageState extends State<CallingPage> {
                                 height:
                                     MediaQuery.of(context).size.width * 0.175,
                                 decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.2),
+                                    color: Colors.white.withOpacity(0.8),
                                     shape: BoxShape.circle),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),

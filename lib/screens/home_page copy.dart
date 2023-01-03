@@ -6,11 +6,20 @@ import 'package:telecomm_mobile/screens/notes_page.dart';
 import 'package:telecomm_mobile/screens/login_page.dart';
 import 'package:telecomm_mobile/screens/reminders_page.dart';
 import 'package:telecomm_mobile/widgets/navigation_button.dart';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 import '../main.dart';
 import '../widgets/custom_page_route.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 
-class HomePageCopy extends StatelessWidget {
+class HomePageCopy extends StatefulWidget {
+  HomePageCopy({Key? key}) : super(key: key);
+
+  @override
+  State<HomePageCopy> createState() => _HomePageCopyState();
+}
+
+class _HomePageCopyState extends State<HomePageCopy>
+    with SingleTickerProviderStateMixin {
   // final pages = List.generate(5, (index) => '$index');
   final controller = ScrollController();
   final pages = {
@@ -50,30 +59,38 @@ class HomePageCopy extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       //1
-                      IconButton(
-                        icon: Image.asset(
-                          "assets/phonecallicon.png",
-                          fit: BoxFit.contain,
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            0, 0, MediaQuery.of(context).size.width * 0.025, 0),
+                        child: IconButton(
+                          icon: Image.asset(
+                            "assets/phonecallicon.png",
+                            fit: BoxFit.contain,
+                          ),
+                          onPressed: () {},
                         ),
-                        onPressed: () {},
                       ),
                       //2
-                      TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              CustomPageRoute(child: CallingPage()),
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Text(
-                              "Call",
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 30,
-                                  color: Colors.black),
-                            ),
-                          ))
+                      AnimatedButton(
+                        selectedBackgroundColor: Colors.white30,
+                        textAlignment: Alignment.center,
+                        backgroundColor: Color.fromARGB(255, 187, 242, 70),
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        borderRadius: 50,
+                        isReverse: false,
+                        selectedTextColor: Colors.black,
+                        transitionType: TransitionType.LEFT_TO_RIGHT,
+                        textStyle: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 30,
+                            color: Colors.black),
+                        text: "Call",
+                        onPress: () {
+                          Navigator.of(context).push(
+                            CustomPageRoute(child: CallingPage()),
+                          );
+                        },
+                      )
                     ],
                   ),
                 ),
@@ -214,4 +231,6 @@ class HomePageCopy extends StatelessWidget {
           ],
         ),
       ));
+
+  List<MaterialColor> colorizeColors = [Colors.green, Colors.grey];
 }

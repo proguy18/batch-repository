@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:telecomm_mobile/screens/admin_view.dart';
 import 'package:telecomm_mobile/screens/forgot_password_page.dart';
 // import 'package:telecomm_mobile/screens/registration_screen.dart';
@@ -76,11 +78,11 @@ class _LoginPageState extends State<LoginPage> {
           emailController.text = value!;
         },
         textInputAction: TextInputAction.next,
-        style: TextStyle(
+        style: GoogleFonts.montserrat(
           color: Colors.black,
         ),
         decoration: InputDecoration(
-          fillColor: Color.fromARGB(255, 187, 242, 70),
+          fillColor: Colors.white.withOpacity(0.9),
           filled: true,
           prefixIcon: Icon(
             Icons.mail,
@@ -113,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           focusColor: Colors.white,
-          fillColor: Color.fromARGB(255, 187, 242, 70),
+          fillColor: Colors.white.withOpacity(0.9),
           filled: true,
           prefixIcon: Icon(
             Icons.vpn_key,
@@ -130,27 +132,26 @@ class _LoginPageState extends State<LoginPage> {
           ),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
-          hintStyle: TextStyle(
+          hintStyle: GoogleFonts.montserrat(
             color: Colors.black,
           ),
         ));
 
-    final loginButton = Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(30),
-      color: Color.fromARGB(255, 206, 236, 245),
-      child: MaterialButton(
-          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          minWidth: MediaQuery.of(context).size.width,
-          onPressed: () {
-            signIn(emailController.text, passwordController.text);
-          },
-          child: Text(
-            "Login",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-          )),
+    final loginButton = AnimatedButton(
+      selectedBackgroundColor: Color.fromARGB(255, 107, 178, 180),
+      textAlignment: Alignment.center,
+      backgroundColor: Colors.white,
+      width: MediaQuery.of(context).size.width * 0.72,
+      borderRadius: 50,
+      isReverse: true,
+      selectedTextColor: Colors.black,
+      transitionType: TransitionType.LEFT_TO_RIGHT,
+      textStyle: GoogleFonts.montserrat(
+          fontWeight: FontWeight.w700, fontSize: 20, color: Colors.black),
+      text: "Login",
+      onPress: () {
+        signIn(emailController.text, passwordController.text);
+      },
     );
 
     return Scaffold(
