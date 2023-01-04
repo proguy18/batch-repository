@@ -127,9 +127,11 @@ class _BatchPageState extends State<BatchPage> {
         .collection('currentBatch');
 
     // If no batches to dump, do nothing
-    if (sourceCollection == null) {
-      return;
-    }
+    sourceCollection.get().then((QuerySnapshot snapshot) {
+      if (snapshot.docs.isEmpty) {
+        return;
+      }
+    });
 
     CollectionReference destinationCollection =
         FirebaseFirestore.instance.collection('dumpedBatches');
@@ -153,8 +155,17 @@ class _BatchPageState extends State<BatchPage> {
   // }
 
   void moveNextBatch() async {
-    QuerySnapshot snapshot = await FirebaseFirestore.instance
-        .collection('availableBatches')
+    CollectionReference sourceCollection =
+        FirebaseFirestore.instance.collection('availableBatches');
+
+    // If no batches to fetch, do nothing
+    sourceCollection.get().then((QuerySnapshot snapshot) {
+      if (snapshot.docs.isEmpty) {
+        return;
+      }
+    });
+
+    QuerySnapshot snapshot = await sourceCollection
         .orderBy('batchNo', descending: false)
         .limit(1)
         .get();
