@@ -28,7 +28,7 @@ class CallButton extends StatelessWidget {
             if (microphoneStatus == PermissionStatus.denied) {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text(
-                      "You need to enable your micropohone to make calls.")));
+                      "You need to enable your microphone to make calls.")));
             }
 
             if (microphoneStatus == PermissionStatus.permanentlyDenied) {

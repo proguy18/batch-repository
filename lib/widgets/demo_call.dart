@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_voximplant/flutter_voximplant.dart';
-import 'package:telecomm_mobile/widgets/call.dart';
+import 'package:telecomm_mobile/widgets/call_button.dart';
 // import 'package:vox/services/auth_service.dart';
 
 class DemoCall extends StatefulWidget {
