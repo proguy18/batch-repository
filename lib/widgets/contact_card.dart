@@ -39,14 +39,14 @@ class ContactCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    contactModel.number.toString(),
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
+                  // SizedBox(height: 8),
+                  // Text(
+                  //   contactModel.number.toString(),
+                  //   style: GoogleFonts.montserrat(
+                  //     fontSize: 16,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
                 ],
               ),
               IconButton(
