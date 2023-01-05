@@ -133,8 +133,18 @@ class _BatchPageState extends State<BatchPage> {
       }
     });
 
-    CollectionReference destinationCollection =
-        FirebaseFirestore.instance.collection('dumpedBatches');
+    // Get a reference to the document
+    DocumentReference documentReference = FirebaseFirestore.instance
+        .collection('dumpedBatches')
+        .doc('batch${user.batchNo}');
+
+    // Set the batchNo field of the document to the desired value
+    documentReference.set({'batchNo': user.batchNo}, SetOptions(merge: true));
+
+    CollectionReference destinationCollection = FirebaseFirestore.instance
+        .collection('dumpedBatches')
+        .doc('batch${user.batchNo}')
+        .collection('batchCollection');
 
     QuerySnapshot snapshot = await sourceCollection.get();
     List<DocumentSnapshot> documents = snapshot.docs;
@@ -145,14 +155,6 @@ class _BatchPageState extends State<BatchPage> {
       await document.reference.delete();
     }
   }
-
-  // void getNextBatch() {
-  //   var batch = FirebaseFirestore.instance
-  //       .collection('batches')
-  //       .orderBy('batchNo', descending: false);
-
-  //   print(batch.get());
-  // }
 
   void moveNextBatch() async {
     CollectionReference sourceCollection =
@@ -173,6 +175,7 @@ class _BatchPageState extends State<BatchPage> {
     List<DocumentSnapshot> documents = snapshot.docs;
     for (var document in documents) {
       Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+      int fetchedBatchNo = data['batchNo'];
 
       // Get the collection reference for the source and destination collections
       CollectionReference sourceCollection =
@@ -189,6 +192,14 @@ class _BatchPageState extends State<BatchPage> {
       QuerySnapshot subcollectionSnapshot = await sourceCollection.get();
       List<DocumentSnapshot> subcollectionDocuments =
           subcollectionSnapshot.docs;
+
+      // Get a reference to the document
+      DocumentReference documentReference =
+          FirebaseFirestore.instance.collection("users").doc(user.uid);
+
+      // Set the batchNo field of the document to the desired value
+      documentReference
+          .set({'batchNo': fetchedBatchNo}, SetOptions(merge: true));
 
       // Add each document in the subcollection to the destination subcollection
       for (var subcollectionDocument in subcollectionDocuments) {
