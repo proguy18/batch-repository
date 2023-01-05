@@ -353,7 +353,7 @@ class _NotesPageState extends State<NotesPage> {
     // }
 
     Fluttertoast.showToast(
-      msg: "note Created",
+      msg: "Note Created",
       textColor: Colors.black,
       backgroundColor: Colors.green,
       gravity: ToastGravity.CENTER,
