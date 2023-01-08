@@ -3,10 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:telecomm_mobile/glassmorphism/glassmorphism.dart';
 import 'package:telecomm_mobile/screens/batch_page.dart';
 import 'package:telecomm_mobile/screens/calling_page.dart';
-import 'package:telecomm_mobile/screens/notes_page.dart';
-import 'package:telecomm_mobile/screens/login_page.dart';
 import 'package:telecomm_mobile/screens/reminders_page.dart';
-import 'package:telecomm_mobile/widgets/navigation_button.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import '../main.dart';
 import 'package:line_icons/line_icon.dart';
@@ -23,19 +20,6 @@ class HomePageCopy extends StatefulWidget {
 
 class _HomePageCopyState extends State<HomePageCopy>
     with SingleTickerProviderStateMixin {
-  // final pages = List.generate(5, (index) => '$index');
-  final controller = ScrollController();
-  final pages = {
-    "Batch": BatchPage(),
-    "Calling": CallingPage(),
-    "Note": NotesPage(),
-    "Login": LoginPage(),
-    "Reminders": RemindersPage(),
-  };
-
-  late final List pagesString = pages.keys.toList();
-  late final List pagesWidget = pages.values.toList();
-
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Container(
@@ -57,11 +41,9 @@ class _HomePageCopyState extends State<HomePageCopy>
             alignment: Alignment.center,
             child: Column(
               children: [
-                //sizebox
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),
-                //Row 1
                 Padding(
                   padding: const EdgeInsets.all(13.0),
                   child: Container(
@@ -76,7 +58,6 @@ class _HomePageCopyState extends State<HomePageCopy>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            //1
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0,
                                   MediaQuery.of(context).size.width * 0.025, 0),
@@ -88,7 +69,6 @@ class _HomePageCopyState extends State<HomePageCopy>
                                 onPressed: () {},
                               ),
                             ),
-                            //2
                             AnimatedButton(
                               selectedBackgroundColor:
                                   Color.fromARGB(255, 0, 217, 255)
@@ -117,132 +97,160 @@ class _HomePageCopyState extends State<HomePageCopy>
                     ),
                   ),
                 ),
-                //Row2
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GlassMorphism(
-                      color: Colors.black,
-                      blur: 10,
-                      opacity: 0.5,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        child: Column(
-                          children: [
-                            //1
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  IconButton(
-                                    icon: LineIcon.cubes(
-                                      color: Colors.white,
-                                      size: 40,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => BatchPage()),
+                        );
+                      },
+                      child: GlassMorphism(
+                        color: Colors.black,
+                        blur: 10,
+                        opacity: 0.5,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                      icon: LineIcon.cubes(
+                                        color: Colors.white,
+                                        size: 40,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BatchPage()),
+                                        );
+                                      },
                                     ),
-                                    onPressed: () {},
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            //2
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 70, 0, 0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Change",
-                                    style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 15,
-                                        color: Colors.white.withOpacity(0.5)),
-                                  ),
-                                ],
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(16, 70, 0, 0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Change",
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15,
+                                          color: Colors.white.withOpacity(0.5)),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            //3
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Batch",
-                                    style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 20,
-                                        color: Colors.white),
-                                  ),
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Batch",
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 20,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.08,
                     ),
-                    GlassMorphism(
-                      color: Colors.black,
-                      blur: 10,
-                      opacity: 0.5,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        child: Column(
-                          children: [
-                            //1
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  IconButton(
-                                    icon: LineIcon.bell(
-                                      color: Colors.white,
-                                      size: 40,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RemindersPage()),
+                        );
+                      },
+                      child: GlassMorphism(
+                        color: Colors.black,
+                        blur: 10,
+                        opacity: 0.5,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          child: Column(
+                            children: [
+                              //1
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                      icon: LineIcon.bell(
+                                        color: Colors.white,
+                                        size: 40,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RemindersPage()),
+                                        );
+                                      },
                                     ),
-                                    onPressed: () {},
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            //2
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 70, 0, 0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Check",
-                                    style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 15,
-                                        color: Colors.white.withOpacity(0.5)),
-                                  ),
-                                ],
+
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(16, 70, 0, 0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Check",
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15,
+                                          color: Colors.white.withOpacity(0.5)),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            //3
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Reminder",
-                                    style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 20,
-                                        color: Colors.white),
-                                  ),
-                                ],
+
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Reminder",
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 20,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     )
                   ],
                 ),
-                //row3
                 Padding(
                   padding: const EdgeInsets.all(13.0),
                   child: GlassMorphism(

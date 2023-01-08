@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:telecomm_mobile/glassmorphism/glassmorphism.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,8 +25,11 @@ class ContactCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  AutoSizeText(
                     contactModel.name,
+                    minFontSize: 20,
+                    maxFontSize: 30,
+                    maxLines: 1,
                     style: GoogleFonts.montserrat(
                       color: Colors.white,
                       fontSize: 20,
@@ -36,7 +40,7 @@ class ContactCard extends StatelessWidget {
                   Text(
                     contactModel.type,
                     style: GoogleFonts.montserrat(
-                      fontSize: 16,
+                      fontSize: 10,
                       color: Colors.white,
                     ),
                   ),

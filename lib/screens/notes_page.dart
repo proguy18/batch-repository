@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:telecomm_mobile/glassmorphism/glassmorphism.dart';
-// import 'package:telecomm_mobile/widgets/rating.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class NotesPage extends StatefulWidget {
   const NotesPage({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class NotesPage extends StatefulWidget {
 class _NotesPageState extends State<NotesPage> {
   User user = FirebaseAuth.instance.currentUser!;
 
-  int selectedRating = 0;
+  int selectedRating = 1;
 
   String ratingText = "Neutral";
 
@@ -40,31 +39,6 @@ class _NotesPageState extends State<NotesPage> {
   @override
   Widget build(BuildContext context) {
     // ENTER YOUR PERCEIVED CUSTOMER EXPERIENCE HOW LIKELY IS THE CUSTOMER LIKELY TO BUY A PRODUCT
-
-    final nameField = TextFormField(
-        autofocus: false,
-        controller: nameEditingController,
-        keyboardType: TextInputType.text,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        onSaved: (value) {
-          nameEditingController.text = value!;
-        },
-        textInputAction: TextInputAction.done,
-        style: TextStyle(
-          color: Colors.white,
-        ),
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.black.withOpacity(0.2),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Enter the client's name.",
-          hintStyle: TextStyle(
-            color: Colors.white,
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ));
 
     // NOTES
     final descriptionField = TextFormField(
@@ -154,11 +128,6 @@ class _NotesPageState extends State<NotesPage> {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Color.fromARGB(255, 15, 23, 25),
-              // image: DecorationImage(
-              //   image: AssetImage("assets/back2.jpg"),
-              //   fit: BoxFit.cover,
-              //   opacity: 1,
-              // ),
               border: new Border.all(
                   color: Colors
                       .transparent), //color is transparent so that it does not blend with the actual color specified
@@ -180,82 +149,30 @@ class _NotesPageState extends State<NotesPage> {
                     SizedBox(height: 20),
                     Column(
                       children: [
-                        RatingBar.builder(
-                          initialRating: 3,
-                          itemCount: 5,
-                          onRatingUpdate: (rating) {
-                            // print(rating);
-                            selectedRating = rating.toInt();
-                            // switch (selectedRating) {
-                            //   case 0:
-                            //     ratingText = "Extremely Dissatisfied";
-                            //     print(ratingText);
-                            //     break;
-                            //   case 1:
-                            //     ratingText = "Very Dissatisfied";
-                            //     print(ratingText);
-                            //     break;
-                            //   case 2:
-                            //     ratingText = "Dissatisfied";
-                            //     print(ratingText);
-                            //     break;
-                            //   case 3:
-                            //     ratingText = "Neutral";
-                            //     print(ratingText);
-                            //     break;
-                            //   case 4:
-                            //     ratingText = "Satisfied";
-                            //     print(ratingText);
-                            //     break;
-                            //   case 5:
-                            //     ratingText = "Very Satisfied";
-                            //     print(ratingText);
-                            //     break;
-                            // }
-                          },
-                          itemBuilder: (context, index) {
-                            switch (index) {
-                              case 0:
-                                return Icon(
-                                  Icons.sentiment_very_dissatisfied,
-                                  color: Colors.red,
-                                );
-                              case 1:
-                                return Icon(
-                                  Icons.sentiment_dissatisfied,
-                                  color: Colors.redAccent,
-                                );
-                              case 2:
-                                return Icon(
-                                  Icons.sentiment_neutral,
-                                  color: Colors.amber,
-                                );
-                              case 3:
-                                return Icon(
-                                  Icons.sentiment_satisfied,
-                                  color: Colors.lightGreen,
-                                );
-                              case 4:
-                                return Icon(
-                                  Icons.sentiment_very_satisfied,
-                                  color: Colors.green,
-                                );
-                            }
-                            return Text("Something went wrong");
+                        ToggleSwitch(
+                          minWidth: 120.0,
+                          cornerRadius: 20.0,
+                          activeBgColors: [
+                            [Colors.red[800]!],
+                            [Colors.green[800]!],
+                          ],
+                          activeFgColor: Colors.white,
+                          inactiveBgColor: Colors.grey,
+                          inactiveFgColor: Colors.white,
+                          initialLabelIndex: 1,
+                          totalSwitches: 2,
+                          labels: [
+                            'Not Interested',
+                            'Interested',
+                          ],
+                          radiusStyle: true,
+                          onToggle: (index) {
+                            selectedRating = index!;
                           },
                         ),
-                        // Builder(builder: (context) => StatefulBuilder(builder: (context, StepStateSB)))
-                        // ValueListenableBuilder(
-                        //   valueListenable: ratingText,
-                        //   builder: (context, value, child) {
-                        //     Text(ratingText);
-                        //   },
-                        // )
                       ],
                     ),
                     SizedBox(height: 20),
-                    nameField,
-                    SizedBox(height: 15),
                     descriptionField,
                     SizedBox(height: 15),
                     reminderCheckbox,
@@ -339,26 +256,6 @@ class _NotesPageState extends State<NotesPage> {
 
             // Add the note to the notes collection within the user
           }).catchError((error) => print("Failed to add note: $error"));
-
-    // void createReminder() async {
-    //   CollectionReference reminderCollection =
-    //       FirebaseFirestore.instance.collection('notes');
-
-    //   // Add the note to the notes collection
-    //   reminderCollection.add({
-    //     'rating': selectedRating,
-    //     'description': descriptionEditingController.text,
-    //     'dateCreated': Timestamp.now(),
-    //   }).then((noteRef) {
-    //     // Add noteID field to the note
-    //     reminderCollection
-    //         .doc(noteRef.id)
-    //         .set({'noteID': noteRef.id}, SetOptions(merge: true));
-
-    //     // Add the note to the notes collection within the user
-    //   }).catchError((error) => print("Failed to add note: $error"));
-
-    // }
 
     Fluttertoast.showToast(
       msg: "Note Created",
