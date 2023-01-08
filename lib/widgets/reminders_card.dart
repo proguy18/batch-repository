@@ -85,9 +85,10 @@ class RemindersCard extends StatelessWidget {
           },
         );
       },
-      child: Card(
-        color: Colors.transparent,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
         child: GlassMorphism(
+          color: Colors.white,
           blur: 10,
           opacity: 0.05,
           child: Padding(

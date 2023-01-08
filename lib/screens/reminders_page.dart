@@ -83,6 +83,7 @@ class _RemindersPageState extends State<RemindersPage> {
                   Padding(
                     padding: const EdgeInsets.all(13.0),
                     child: GlassMorphism(
+                      color: Colors.white,
                       blur: 10,
                       opacity: 0.05,
                       child: Container(

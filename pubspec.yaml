@@ -50,6 +50,8 @@ dependencies:
   video_player: ^2.4.9
   flutter_fadein: ^2.0.0
   flutter_animated_button: ^2.0.2
+  scaffold_gradient_background: ^1.0.3+1
+  line_icons: ^2.0.1
 
 dev_dependencies:
   flutter_test:

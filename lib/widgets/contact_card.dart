@@ -10,9 +10,10 @@ class ContactCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.transparent,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
       child: GlassMorphism(
+        color: Colors.white,
         blur: 10,
         opacity: 0.05,
         child: Padding(

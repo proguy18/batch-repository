@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:telecomm_mobile/glassmorphism/glassmorphism.dart';
 // import 'package:telecomm_mobile/widgets/rating.dart';
 
 class NotesPage extends StatefulWidget {
@@ -94,22 +95,29 @@ class _NotesPageState extends State<NotesPage> {
         ));
 
     final createnoteButton = Material(
+      color: Colors.transparent,
       elevation: 5,
-      borderRadius: BorderRadius.circular(30),
-      color: Color.fromARGB(255, 187, 242, 70),
-      child: MaterialButton(
-          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          minWidth: MediaQuery.of(context).size.width,
-          onPressed: () => showDialog(
-                context: context,
-                builder: (context) => noteConfirmation(),
-              ),
-          child: Text(
-            "Send note",
-            textAlign: TextAlign.center,
-            style: GoogleFonts.openSans(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-          )),
+      child: GlassMorphism(
+        color: Colors.black,
+        blur: 10,
+        opacity: 0.8,
+        child: MaterialButton(
+            color: Colors.transparent,
+            padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+            minWidth: MediaQuery.of(context).size.width,
+            onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => noteConfirmation(),
+                ),
+            child: Text(
+              "Send note",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.openSans(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            )),
+      ),
     );
 
     final reminderCheckbox = Row(

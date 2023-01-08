@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 class GlassMorphism extends StatelessWidget {
   final double blur;
   final double opacity;
+  final Color color;
   final Widget child;
   const GlassMorphism(
       {Key? key,
+      required this.color,
       required this.blur,
       required this.opacity,
       required this.child})
@@ -23,12 +25,11 @@ class GlassMorphism extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(opacity),
+            color: color.withOpacity(opacity),
             borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
-            border:
-                Border.all(width: 1.5, color: Colors.white.withOpacity(0.2)),
+            border: Border.all(width: 1.5, color: Colors.transparent),
           ),
           child: child,
         ),
