@@ -1,16 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:telecomm_mobile/screens/admin_view.dart';
 import 'package:telecomm_mobile/screens/forgot_password_page.dart';
-// import 'package:telecomm_mobile/screens/registration_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:telecomm_mobile/screens/home_page.dart';
 import 'package:telecomm_mobile/screens/registration_page.dart';
-// import 'package:telecomm_mobile/screens/navbar.dart';
-// import 'package:video_player/video_player.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -46,14 +42,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    // _controller = VideoPlayerController.asset('assets/video1.mp4')
-    // ..initialize().then((_) {
-    // _controller.play();
-    // _controller.setLooping(true);
-    // _controller.setVolume(0.0);
-    // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-    // setState(() {});
-    // });
   }
 
   @override
@@ -170,9 +158,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: FittedBox(
                     fit: BoxFit.cover,
                     child: SizedBox(
-                        // width: _controller.value.size.width ?? 0,
-                        // height: _controller.value.size.height ?? 0,
-                        // child: VideoPlayer(_controller),
                         ),
                   ),
                 ),
@@ -213,51 +198,6 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 10,
                         ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                "Don't have an account? ",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              RegistrationPage()));
-                                  // HomePage()));
-                                },
-                                child: Text(
-                                  "Sign up",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
-                              ),
-                            ]),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0,
-                              MediaQuery.of(context).size.height * 0.025, 0, 0),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ForgotPassword()));
-                              // HomePage()));
-                            },
-                            child: Text(
-                              "Forgot password",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -277,24 +217,6 @@ class _LoginPageState extends State<LoginPage> {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((userCreds) async => {
-                  // // Redirect to admin app
-                  // if (await isAdmin(userCreds.user?.uid))
-                  //   {
-                  //     Fluttertoast.showToast(msg: "Admin login successful"),
-                  //     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             // AdminScreen())),
-                  //             HomePage())),
-                  //   }
-                  // // Redirect to user app
-                  // else
-                  //   {
-                  //     Fluttertoast.showToast(msg: "User login successful"),
-                  //     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  //         builder: (context) =>
-                  //             // NavBarHomeScreen())),
-                  //             HomePage())),
-                  //   }
                   Fluttertoast.showToast(msg: "Login successful"),
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) =>
@@ -334,12 +256,5 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     super.dispose();
-    // _controller.dispose();
   }
-
-  // Future<bool> isAdmin(uid) async {
-  //   var collectionReference =
-  //       await FirebaseFirestore.instance.collection("users").doc(uid).get();
-  //   return collectionReference.data()!['isAdmin'];
-  // }
 }
