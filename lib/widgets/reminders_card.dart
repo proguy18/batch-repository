@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:telecomm_mobile/models/reminders_model.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 // import 'package:line_icons/line_icons.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:telecomm_mobile/widgets/delete_reminders.dart';
@@ -20,66 +21,64 @@ class RemindersCard extends StatelessWidget {
         showDialog(
           context: context,
           builder: (context) {
-            return Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      DateFormat('dd/MM/yyyy, HH:mm')
-                          .format(reminders.reminderDate.toDate())
-                          .toString(),
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    DateFormat('dd/MM/yyyy, HH:mm')
+                        .format(reminders.reminderDate.toDate())
+                        .toString(),
+                    style: GoogleFonts.montserrat(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      reminders.description,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    reminders.description,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      reminders.name,
-                      style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    reminders.name,
+                    style: GoogleFonts.montserrat(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(height: 8),
-                    // Text(
-                    //   reminders.type,
-                    //   style: GoogleFonts.montserrat(
-                    //     fontSize: 16,
-                    //     color: Colors.black,
-                    //   ),
-                    // ),
-                    // SizedBox(height: 8),
-                    // Text(
-                    //   reminders.number.toString(),
-                    //   style: GoogleFonts.montserrat(
-                    //     fontSize: 16,
-                    //     color: Colors.black,
-                    //   ),
-                    // ),
-                    SizedBox(height: 8),
-                    IconButton(
-                      color: Colors.red,
-                      icon: Icon(Icons.phone),
-                      onPressed: () {
-                        // Add code here to initiate a phone call
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: 8),
+                  // Text(
+                  //   reminders.type,
+                  //   style: GoogleFonts.montserrat(
+                  //     fontSize: 16,
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 8),
+                  // Text(
+                  //   reminders.number.toString(),
+                  //   style: GoogleFonts.montserrat(
+                  //     fontSize: 16,
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
+                  SizedBox(height: 8),
+                  IconButton(
+                    color: Colors.red,
+                    icon: Icon(Icons.phone),
+                    onPressed: () {
+                      // Add code here to initiate a phone call
+                    },
+                  ),
+                ],
               ),
             );
           },
@@ -96,12 +95,17 @@ class RemindersCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  reminders.name,
-                  style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 150,
+                  child: AutoSizeText(
+                    reminders.name,
+                    minFontSize: 10,
+                    maxFontSize: 30,
+                    maxLines: 1,
+                    style: GoogleFonts.montserrat(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Container(
@@ -109,7 +113,7 @@ class RemindersCard extends StatelessWidget {
                   child: Row(
                     children: [
                       SizedBox(
-                        width: 75,
+                        width: 70,
                         height: 20,
                         child: Container(
                           alignment: Alignment.center,
