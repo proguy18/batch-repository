@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:telecomm_mobile/screens/batch_page.dart';
-import 'package:telecomm_mobile/screens/calling_page.dart';
-import 'package:telecomm_mobile/screens/notes_page.dart';
 import 'package:telecomm_mobile/screens/login_page.dart';
-import 'package:telecomm_mobile/screens/home_page copy.dart';
-import 'package:telecomm_mobile/screens/reminders_page.dart';
 import 'package:telecomm_mobile/widgets/navigation_button.dart';
-import 'package:telecomm_mobile/widgets/demo_call.dart';
+
 
 import '../main.dart';
 
@@ -15,12 +11,7 @@ class HomePage extends StatelessWidget {
   final controller = ScrollController();
   final pages = {
     "Batch": BatchPage(),
-    "Calling": CallingPage(),
-    "Note": NotesPage(),
     "Login": LoginPage(),
-    "Reminders": RemindersPage(),
-    "Home page Copy": HomePageCopy(),
-    "Demo Call": DemoCall()
   };
 
   late final List pagesString = pages.keys.toList();

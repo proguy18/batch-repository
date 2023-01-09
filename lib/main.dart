@@ -4,9 +4,8 @@ import 'package:flutter_voximplant/flutter_voximplant.dart';
 import 'package:telecomm_mobile/controllers/batch_notifier.dart';
 import 'package:telecomm_mobile/screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:telecomm_mobile/screens/home_page%20copy.dart';
 import 'package:provider/provider.dart';
-import 'controllers/reminders_notifier.dart';
+
 
 VIClient client = Voximplant().getClient();
 
@@ -17,7 +16,6 @@ Future main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => RemindersNotifier()),
         ChangeNotifierProvider(create: (_) => BatchNotifier()),
       ],
       child: MyApp(),
@@ -36,7 +34,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: const LoginButton(),
-      home: HomePageCopy(),
+      home: HomePage(),
       // home: AdminBookings(),
     );
   }
